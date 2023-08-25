@@ -15,100 +15,110 @@
     <img class="logo" src="logo.png" alt="eraser">
     Background-Remover
   </header>
-  <div class="info">
-  <h1>Change Image Background</h1>
-  <h3>Replace the background of any image For Free </h3>
-  </div>
   <div class="text-center">
   </div>
-<fieldset>
-  <div class="container mt-4" >
-  <!-- <div class="row mt-4"> -->
-    <div class="col-md-12 card mt-4">
-      <form>
-        <div class="form-group">
+  <fieldset>
+    <div class="container mt-4">
+      <div class="col-md-12 card mt-4">
+        <form>
+          <div class="form-group">
             <label for="fileinput">
-            <div class="select-file">
-            <h2 class="text-centerhadding"> Click here to Select images</h2>
-            </div>
+              <h2 class="text-center hadding">Click Here to select a File</h2>
             </label>
-          <input id="fileinput" class="try form-control" type="file" />
-          <input type="button" onclick="submitHandler()" class="btn btn-primary m-1" value="Upload">
-        </div>
-      </form>
-    <button class="btn btn-warning m-1" onclick="downloadfile()">Download</button>
+            <input id="fileinput" class="try form-control" type="file" />
+            <input type="button" onclick="submitHandler()" class="btn btn-primary m-1" value="Upload">
+          </div>
+        </form>
+      </div>
     </div>
-     <div class="preview">
-    <div class="img">
-      <h3>Image Preview</h3>
-      <img id="preview" src="URL.createObjectURL(image)" alt="Preview" style="max-width: 300px; max-height: 300px;">
+    <div class="img-container">
+      <div class="img">
+        <h3>Image Preview</h3>
+        <img id="preview" src="URL.createObjectURL(image)" alt="Preview" style="max-width: 300px; max-height: 300px;">
+      </div>
+      <div class="img">
+        <h3>Output Image</h3>
+        <img id="output" src="url" alt="Output" style="max-width: 300px; max-height: 300px;">
+      </div>
     </div>
-    <div class="img">
-      <h3>Output Image</h3>
-      <img id="output" src="" alt="Output" style="max-width: 300px; max-height: 300px;">
+    <div class="button-container">
+      <button class="btn btn-warning m-1" onclick="downloadfile()">Download</button>
     </div>
-   </div>
-  </div>
-</fieldset>
-  
-<footer>
-  <section id="contact">
-    <div class="content">
-      <p class="p">Connect with me on social media:</p>
-      <ul class="social-links">
-        <li><a href="https://github.com/bannaravindra"><img class="icons" src="icons8-github-50.png" alt="github"></a></li>
-        <li><a href="https://twitter.com/raviiiiiii___"><img class="icon" src="X-Logo (1).png" alt="X"></a></li>
-        <li><a href="https://www.linkedin.com/in/ravindra-singh-62689b24a"><img class="icons" src="icons8-linkedin-50.png" alt="LinkedIn"></a></li>
-      </ul>
-    </div>
-  </section>
-</footer>
- <script>
-  let imageURL;
+  </fieldset>
 
-  function submitHandler() {
-  const fileinput = document.getElementById('fileinput');
+  <footer>
+    <section id="contact">
+      <div class="content">
+        <p>Connect with me on social media:</p>
+        <ul class="social-links">
+          <li><a href="https://github.com/bannaravindra"><img class="icons" src="icons8-github-50.png"
+                alt="github"></a></li>
+          <li><a href="https://twitter.com/raviiiiiii___"><img class="icon" src="X-Logo (1).png" alt="X"></a>
+          </li>
+          <li><a href="https://www.linkedin.com/in/ravindra-singh-62689b24a"><img class="icons"
+                src="icons8-linkedin-50.png" alt="LinkedIn"></a></li>
+        </ul>
+      </div>
+    </section>
+  </footer>
+  <script>
+    let imageURL;
 
-  if (fileinput.files.length === 0) {
-    console.error("No file selected.");
-    return;
-  }
+    function submitHandler() {
+      const fileinput = document.getElementById('fileinput');
 
-  const image = fileinput.files[0];
+      if (fileinput.files.length === 0) {
+        console.error("No file selected.");
+        return;
+      }
 
-  const formData = new FormData();
-  formData.append('image_file', image);
-  formData.append('size', 'auto');
+      const image = fileinput.files[0];
 
-  const apikey = 'afonzUf8jAPVzs7t6RZW3dqL';
+      const formData = new FormData();
+      formData.append('image_file', image);
+      formData.append('size', 'auto');
 
-  fetch('https://api.remove.bg/v1.0/removebg', {
-    method: 'POST',
-    headers: {
-      'X-Api-Key': apikey,
-    },
-    body: formData
-  })
-    .then(function (response) {
-      return response.blob()
-    })
-    .then(function (blob) {
-      const url = URL.createObjectURL(blob);
+      const apikey = 'afonzUf8jAPVzs7t6RZW3dqL';
 
-      const previewImg = document.getElementById('preview');
-      previewImg.src = URL.createObjectURL(image);
+      fetch('https://api.remove.bg/v1.0/removebg', {
+        method: 'POST',
+        headers: {
+          'X-Api-Key': apikey,
+        },
+        body: formData
+      })
+        .then(function (response) {
+          return response.blob()
+        })
+        .then(function (blob) {
+          const url = URL.createObjectURL(blob);
 
-      const outputImg = document.getElementById('output');
-      outputImg.src = url;
+          const previewImg = document.getElementById('preview');
+          previewImg.src = URL.createObjectURL(image);
 
-      imageURL = url;
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-}
+          const outputImg = document.getElementById('output');
+          outputImg.src = url;
 
-</script>
+          imageURL = url;
+        })
+        .catch(function (error) {
+          console.error(error);
+        });
+    }
+
+    function downloadfile() {
+      var a = document.createElement('a');
+
+      a.href = imageURL;
+      a.download = 'output.png';
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      document.body.removeChild(a);
+    }
+  </script>
 </body>
 
 </html>
