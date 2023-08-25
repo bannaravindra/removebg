@@ -38,72 +38,19 @@
       </form>
     <button class="btn btn-warning m-1" onclick="downloadfile()">Download</button>
     </div>
-  <!-- </div> -->
+     <div class="preview">
+    <div class="img">
+      <h3>Image Preview</h3>
+      <img id="preview" src="URL.createObjectURL(image)" alt="Preview" style="max-width: 300px; max-height: 300px;">
+    </div>
+    <div class="img">
+      <h3>Output Image</h3>
+      <img id="output" src="" alt="Output" style="max-width: 300px; max-height: 300px;">
+    </div>
+   </div>
   </div>
 </fieldset>
-<script>
-
-let imageURL;
-
-function submitHandler() {
-console.log("click");
-const fileinput = document.getElementById('fileinput');
-console.log(fileinput.files);
-
-if (fileinput.files.length === 0) {
-console.error("No file selected.");
-return;
-}
-
-const image = fileinput.files[0];
-
-const formData = new FormData();
-formData.append('image_file', image);
-formData.append('size', 'auto');
-
-const apikey = 'afonzUf8jAPVzs7t6RZW3dqL';
-
-fetch('https://api.remove.bg/v1.0/removebg', {
-method: 'POST',
-headers: {
-'X-Api-Key': apikey,
-},
-body: formData
-})
-.then(function (response) {
-return response.blob()
-})
-.then(function (blob) {
-console.log(blob);
-const url = URL.createObjectURL(blob);
-
-const img = document.createElement('img');
-img.src = url;
-document.body.appendChild(img);
-
-imageURL = url;
-})
-.catch(function (error) {
-console.error(error);
-});
-
-}
-
-function downloadfile() {
-var a = document.createElement('a');
-
-a.href = imageURL;
-a.download = 'bgremover by ravi.png';
-
-document.body.appendChild(a);
-
-a.click();
-
-document.body.removeChild(a);
-}
-
-
-</script>
+  
 <footer>
   <section id="contact">
     <div class="content">
@@ -116,6 +63,52 @@ document.body.removeChild(a);
     </div>
   </section>
 </footer>
+ <script>
+  let imageURL;
+
+  function submitHandler() {
+  const fileinput = document.getElementById('fileinput');
+
+  if (fileinput.files.length === 0) {
+    console.error("No file selected.");
+    return;
+  }
+
+  const image = fileinput.files[0];
+
+  const formData = new FormData();
+  formData.append('image_file', image);
+  formData.append('size', 'auto');
+
+  const apikey = 'afonzUf8jAPVzs7t6RZW3dqL';
+
+  fetch('https://api.remove.bg/v1.0/removebg', {
+    method: 'POST',
+    headers: {
+      'X-Api-Key': apikey,
+    },
+    body: formData
+  })
+    .then(function (response) {
+      return response.blob()
+    })
+    .then(function (blob) {
+      const url = URL.createObjectURL(blob);
+
+      const previewImg = document.getElementById('preview');
+      previewImg.src = URL.createObjectURL(image);
+
+      const outputImg = document.getElementById('output');
+      outputImg.src = url;
+
+      imageURL = url;
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+}
+
+</script>
 </body>
 
 </html>
