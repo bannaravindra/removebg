@@ -10,12 +10,14 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: 100% 100%;
-    background-color: whitesmoke;
+    background: linear-gradient(135deg, #007bff, #00cc66);
+
 
 }
 header{
    width: 100%;
-   background-color: ghostwhite;
+   background: linear-gradient(135deg, #007bff, #007bff);
+
    padding: 15px;
    margin-bottom: 35%;
    display: flex;
@@ -59,7 +61,8 @@ header{
 fieldset{
     border: none;
     border-radius: 15px;
-    background-color: linear-gradient(90deg,#2960b9, #8e43ad);;
+    background: linear-gradient(135deg, #007bff, #00cc66);
+
     max-width: 40%;
     margin: auto;
     padding-bottom: 15px;
@@ -72,6 +75,8 @@ fieldset{
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background: linear-gradient(135deg, #007bff, #00cc66);
+
 }
 
 #fileinput {
@@ -145,7 +150,7 @@ footer {
   margin-top: 50%;
   text-align: center;
   padding: 15px;
-  background-color: ghostwhite;
+  background: linear-gradient(200deg, #00cc68, #00cc66);
   color: black;
 }
 .icons{
@@ -175,4 +180,89 @@ footer {
 
 .info{
   text-align: center;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    background-color: whitesmoke;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header {
+    width: 100%;
+    background-color: ghostwhite;
+    padding: 15px;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text-center {
+    padding: 1px;
+    margin-bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.text-center img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin: 0 15px;
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1.5px solid violet;
+}
+
+fieldset {
+    border: none;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #007bff, #00cc66);
+
+    max-width: 70%;
+    margin: auto;
+    padding: 15px;
+    margin-top: 25px;
+}
+
+@media only screen and (max-width: 768px) {
+    header {
+    margin-bottom: 10%; }
+    
+    .text-center,
+    .text-center-hedding {
+        margin-bottom: 10%;
+    }
+    
+    .text-center img {
+        width: 40px;
+        height: 40px;
+        margin: 0 10px;
+    }
+    
+    fieldset {
+        max-width: 90%; 
+    }
 }
