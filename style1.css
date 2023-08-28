@@ -5,13 +5,12 @@
     font-size: 15px;
     display: flex;
     flex-direction: row;
-    /* max-width: 50px; */
+    
   }
 
   .text-center h1 {
     text-align: left;
     justify-content: left;
-    /* align-items: left; */
     font-size: 22px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
@@ -93,5 +92,38 @@
   background-color: #ffc107;
   color: #fff;
 }
+  .text-center h1 {
+    text-align: center;
+    font-size: 18px;
+  }
 
+  .hadding {
+    font-size: 22px;
+  }
+
+  .text-center img {
+    width: 25px;
+    border-radius: 9px;
+    margin: 0 3px;
+  }
+
+  fieldset {
+    max-width: 90%;
+    
+  }
+
+  .btn {
+    width: 100%;
+    margin: 5px 0;
+  }
+
+  #fileinput {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .form-control {
+    margin-left: 0;
+    font-size: 16px;
+  }
 }
